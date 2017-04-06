@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "xyz.yakdmt.vkphotoviewer"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        jackOptions {
+            enabled true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:${project.ANDROID_SUPPORT_LIBRARY_VERSION}"
+    compile "com.android.support:design:${project.ANDROID_SUPPORT_LIBRARY_VERSION}"
+    compile "com.google.dagger:dagger:${project.DAGGER_VERSION}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${project.DAGGER_VERSION}"
+    compile "com.arello-mobile:moxy:${project.MOXY_VERSION}"
+    compile "com.arello-mobile:moxy-app-compat:${project.MOXY_VERSION}"
+    provided "com.arello-mobile:moxy-compiler:${project.MOXY_VERSION}"
+    compile "com.squareup.retrofit2:retrofit:${project.RETROFIT_VERSION}"
+    compile "com.squareup.retrofit2:converter-gson:${project.RETROFIT_VERSION}"
+    annotationProcessor "com.squareup:javapoet:${project.JAVAPOET_VERSION}"
+    compile "com.google.guava:guava:${project.GUAVA_VERSION}"
+    compile "com.vk:androidsdk:${project.VK_SDK_VERSION}"
+    compile "com.fasterxml.jackson.core:jackson-annotations:${project.JACKSON_VERSION}"
+
+    //test dependencies
+    testCompile 'junit:junit:4.12'
+
+    //androidTest dependencies
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}
